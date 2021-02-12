@@ -67,6 +67,7 @@ public with sharing class P0B {
                     (balanceCheck[balanceCheck.size()-1]=='{'&&brackets[i]=='}')){
                   balanceCheck.remove(balanceCheck.size()-1);  
                 }
+                
                 System.debug(balanceCheck);
             }else if(
                     balanceCheck.size()==0 &&
