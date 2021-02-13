@@ -58,17 +58,9 @@ public with sharing class P0B {
 
         List<String> brackets = s.split('');
         for (Integer i=0; i<length; i++){
+            System.debug(balanceCheck);
             if(brackets[i]=='(' || brackets[i]=='[' || brackets[i]=='{'){
                 balanceCheck.add(brackets[i]);
-            }else if(balanceCheck.size()>0){
-                if(
-                    (balanceCheck[balanceCheck.size()-1]=='('&&brackets[i]==')')||
-                    (balanceCheck[balanceCheck.size()-1]=='['&&brackets[i]==']')||
-                    (balanceCheck[balanceCheck.size()-1]=='{'&&brackets[i]=='}')){
-                  balanceCheck.remove(balanceCheck.size()-1);  
-                }
-                
-                System.debug(balanceCheck);
             }else if(
                     balanceCheck.size()==0 &&
                     (brackets[i]==')'||
@@ -77,11 +69,19 @@ public with sharing class P0B {
                   balanceCheck.add('k');
             }else if(
                     balanceCheck.size()!=0 &&
-                    (balanceCheck[balanceCheck.size()-1]!='('&&brackets[i]==')')||
+                    ((balanceCheck[balanceCheck.size()-1]!='('&&brackets[i]==')')||
                     (balanceCheck[balanceCheck.size()-1]!='['&&brackets[i]==']')||
-                    (balanceCheck[balanceCheck.size()-1]!='{'&&brackets[i]=='}')){
+                    (balanceCheck[balanceCheck.size()-1]!='{'&&brackets[i]=='}'))){
                   balanceCheck.add('k');
-                    }
+            }else if(balanceCheck.size()>0){
+                if(
+                    (balanceCheck[balanceCheck.size()-1]=='('&&brackets[i]==')')||
+                    (balanceCheck[balanceCheck.size()-1]=='['&&brackets[i]==']')||
+                    (balanceCheck[balanceCheck.size()-1]=='{'&&brackets[i]=='}')){
+                    balanceCheck.remove(balanceCheck.size()-1);  
+                }
+                
+            }
       }
 
         if(balanceCheck.size()>0){
