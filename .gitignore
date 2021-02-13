@@ -16,7 +16,7 @@ coverage/
 **/scripts/soql/query-results
 
 # Apex Script File
-**/scripts/Apex
+**/scripts/Apex/hello.Apex
 
 # Logs
 logs
