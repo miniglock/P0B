@@ -14,4 +14,4 @@ System.debug(P0B.nFibonacci(4));
 System.debug(P0B.sortList(new List<Integer> {2,4,5,1,3,1}));
 System.debug(P0B.nFactorial(4));
 System.debug(P0B.rotateLeftNTimes(new List<Integer> {1,2,3}, 2));
-System.debug(P0B.bracketsAreBalanced('([{]}])'));
+System.debug(P0B.bracketsAreBalanced('(dd[?{ ]}s])'));
