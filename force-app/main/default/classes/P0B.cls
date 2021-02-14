@@ -91,4 +91,42 @@ public with sharing class P0B {
         }
     }
 
+    public static void updateAccountSize(){
+        
+        List<Account> smallAccounts=[SELECT NumberOfEmployees, Size__c, Name FROM Account WHERE NumberOfEmployees<1001];
+        for(Account acc : smallAccounts){
+            acc.Size__c='Small';
+        }
+        update smallAccounts;
+
+        List<Account> mediumAccounts=[SELECT NumberOfEmployees, Size__c, Name FROM Account WHERE NumberOfEmployees>1000 AND NumberOfEmployees<10001];
+        for(Account acc : mediumAccounts){
+            acc.Size__c='Medium';
+        }
+        update mediumAccounts;
+        
+        List<Account> largeAccounts=[SELECT NumberOfEmployees, Size__c, Name FROM Account WHERE NumberOfEmployees>10000];
+        for(Account acc : largeAccounts){
+            acc.Size__c='Large';
+        }
+        update largeAccounts;
+    }
+
+    public static void updateCALeads(){
+        List<Lead> caLeads=[SELECT Name, Status FROM Lead WHERE State='CA'];
+        for(Lead lead : caLeads){
+            lead.Status='Closed - Not Converted';
+            lead.Description='We are no longer doing business in California.';
+        }
+        update caLeads;
+    }
+
+    public static void closePastDueOpportunities(){
+        List<Opportunity> opps=[SELECT Name, StageName FROM Opportunity WHERE CloseDate<TODAY AND StageName != 'Closed Won'];
+        for(Opportunity opLost:opps){
+            opLost.StageName='Closed Lost';
+        }
+        update opps;
+    }
+
 }
