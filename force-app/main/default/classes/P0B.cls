@@ -5,7 +5,9 @@ public with sharing class P0B {
         Integer holdOne = 0;
         Integer holdTwo = 1;
         Integer holdThree = 0;
-        if(n<2){
+        if(n<0){
+            return 0;
+        }else if(n<2){
             return n;
         }else {
         for (Integer i=2; i<=n; i++){
@@ -113,7 +115,7 @@ public with sharing class P0B {
     }
 
     public static void updateCALeads(){
-        List<Lead> caLeads=[SELECT Name, Status FROM Lead WHERE State='CA'];
+        List<Lead> caLeads=[SELECT Name, Status FROM Lead WHERE State='CA' OR State='California'];
         for(Lead lead : caLeads){
             lead.Status='Closed - Not Converted';
             lead.Description='We are no longer doing business in California.';
